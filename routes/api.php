@@ -5,6 +5,7 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Matches\MatchesController;
 use App\Http\Controllers\Player\PlayerController;
 use App\Http\Controllers\Team\TeamController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/user', [UserController::class, 'create'])->name('user');
+
 Route::middleware('authJwt')->group(function () {
+
     Route::prefix('team')->group(function () {
         Route::post('/', [TeamController::class, 'create']);
         Route::get('/', [TeamController::class, 'list']);

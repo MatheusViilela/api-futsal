@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('shirt_number');
-            $table->unsignedBigInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->unsignedBigInteger('teams_id');
+            $table->foreign('teams_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -17,4 +17,12 @@ class Teams extends Model
     {
         return $this->hasMany(Players::class);
     }
+    public function matches()
+    {
+        return $this->hasMany(Matches::class);
+    }
+    public function championships()
+    {
+        return $this->belongsTo(Championships::class);
+    }
 }

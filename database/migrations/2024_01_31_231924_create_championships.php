@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('championships', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
+            $table->unsignedBigInteger('teams_id');
             $table->integer('score')->default(0);
             $table->integer('number_of_goals')->default(0);
             $table->integer('number_of_victories')->default(0);
             $table->integer('number_of_defeats')->default(0);
             $table->timestamps();
 
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('teams_id')->references('id')->on('teams');
         });
     }
 

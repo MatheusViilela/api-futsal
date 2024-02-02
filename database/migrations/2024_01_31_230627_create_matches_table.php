@@ -17,10 +17,10 @@ return new class extends Migration
             $table->time('start_match');
             $table->time('end_match');
             $table->unsignedBigInteger('team1_id');
-            $table->unsignedBigInteger('team1_score');
+            $table->unsignedBigInteger('team1_goals')->default(0);
             $table->unsignedBigInteger('team2_id');
-            $table->unsignedBigInteger('team2_score');
-            $table->unsignedBigInteger('winner_team_id')->nullable();
+            $table->unsignedBigInteger('team2_goals')->default(0);
+            $table->unsignedBigInteger('winner_teams_id')->nullable();
             $table->timestamps();
 
 

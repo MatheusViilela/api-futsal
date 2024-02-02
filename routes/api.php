@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Matches\MatchesController;
+use App\Http\Controllers\Player\PlayerController;
+use App\Http\Controllers\Team\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::middleware('authJwt')->group(function () {
+    Route::prefix('team')->group(function () {
+        Route::post('/', [TeamController::class, 'create']);
+        Route::get('/', [TeamController::class, 'list']);
+        Route::put('/', [TeamController::class, 'update']);
+        Route::delete('/', [TeamController::class, 'delete']);
+    });
+    Route::prefix('player')->group(function () {
+        Route::post('/', [PlayerController::class, 'create']);
+        Route::get('/', [PlayerController::class, 'list']);
+        Route::put('/', [PlayerController::class, 'update']);
+        Route::delete('/', [PlayerController::class, 'delete']);
+    });
+    Route::prefix('matches')->group(function () {
+        Route::post('/', [MatchesController::class, 'create']);
+        Route::get('/', [MatchesController::class, 'list']);
+        Route::put('/', [MatchesController::class, 'update']);
+        Route::delete('/', [MatchesController::class, 'delete']);
+    });
 });

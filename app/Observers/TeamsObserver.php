@@ -8,7 +8,6 @@ class TeamsObserver
 {
     public function created(Teams $team)
     {
-        dd($team);
         $team->championships()->create([
             'teams_id' => $team->id,
             'score' => 0,

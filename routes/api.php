@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Championships\ChampionshipsController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Matches\MatchesController;
 use App\Http\Controllers\Player\PlayerController;
 use App\Http\Controllers\Team\TeamController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +37,8 @@ Route::middleware('authJwt')->group(function () {
         Route::get('/', [MatchesController::class, 'list']);
         Route::put('/', [MatchesController::class, 'update']);
         Route::delete('/', [MatchesController::class, 'delete']);
+    });
+    Route::prefix('championships')->group(function () {
+        Route::get('/', [ChampionshipsController::class, 'list']);
     });
 });

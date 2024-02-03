@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Player;
 
 use App\Exceptions\Execptions;
+use App\Rules\ShirtRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,6 +32,7 @@ class CreatePlayerRequest extends FormRequest
             'shirt_number' => [
                 'required',
                 'integer',
+                new ShirtRule($this->teams_id)
             ],
             'teams_id' => [
                 'required',

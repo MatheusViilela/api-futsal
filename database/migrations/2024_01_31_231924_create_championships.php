@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('number_of_defeats')->default(0);
             $table->timestamps();
 
-            $table->foreign('teams_id')->references('id')->on('teams');
+            $table->foreign('teams_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 

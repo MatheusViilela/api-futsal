@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Matches;
 
 use App\Exceptions\Execptions;
+use App\Rules\MatchRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -39,7 +40,8 @@ class CreateMatchRequest extends FormRequest
             'team1_id' => [
                 'required',
                 'integer',
-                'exists:teams,id'
+                'exists:teams,id',
+                new MatchRule()
             ],
             'team1_score' => [
                 'integer',
@@ -47,7 +49,8 @@ class CreateMatchRequest extends FormRequest
             'team2_id' => [
                 'required',
                 'integer',
-                'exists:teams,id'
+                'exists:teams,id',
+                new MatchRule()
             ],
             'team2_score' => [
                 'integer',
@@ -56,6 +59,7 @@ class CreateMatchRequest extends FormRequest
                 'integer',
                 'exists:teams,id'
             ],
+          
         ];
     }
     public function messages(): array
@@ -77,7 +81,7 @@ class CreateMatchRequest extends FormRequest
             'team2_score.integer' => 'O campo team2_score deve ser um número inteiro',
             'winner_teams_id.integer' => 'O campo winner_teams_id deve ser um número inteiro',
             'winner_teams_id.exists' => 'O campo winner_teams_id deve ser um id válido',
-    
+
         ];
     }
     public function failedValidation(Validator $validator): void
